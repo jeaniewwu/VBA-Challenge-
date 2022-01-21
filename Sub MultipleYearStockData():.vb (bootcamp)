@@ -69,63 +69,10 @@ For Each ws In Worksheets
                 'starting new row of the ticker block
                 j = i + 1
                 
-                End If
+    End If
             
-            Next i
-            
-        LastRowI = ws.Cells(Rows.Count, 9).End(xlUp).Row
-        
-        'Prepare for summary
-        GreatVol = ws.Cells(2, 12).Value
-        GreatIncr = ws.Cells(2, 11).Value
-        GreatDecr = ws.Cells(2, 11).Value
-        
-            'Loop for summary
-            For i = 2 To LastRowI
-            
-                'For greatest total volume--check if next value is larger--if yes take over a new value and populate ws.Cells
-                If ws.Cells(i, 12).Value > GreatVol Then
-                GreatVol = ws.Cells(i, 12).Value
-                ws.Cells(4, 16).Value = ws.Cells(i, 9).Value
-                
-                Else
-                
-                GreatVol = GreatVol
-                
-                End If
-                
-                'For greatest increase--check if next value is larger--if yes take over a new value and populate ws.Cells
-                If ws.Cells(i, 11).Value > GreatIncr Then
-                GreatIncr = ws.Cells(i, 11).Value
-                ws.Cells(2, 16).Value = ws.Cells(i, 9).Value
-                
-                Else
-                
-                GreatIncr = GreatIncr
-                
-                End If
-                
-                'For greatest decrease--check if next value is smaller--if yes take over a new value and populate ws.Cells
-                If ws.Cells(i, 11).Value < GreatDecr Then
-                GreatDecr = ws.Cells(i, 11).Value
-                ws.Cells(3, 16).Value = ws.Cells(i, 9).Value
-                
-                Else
-                
-                GreatDecr = GreatDecr
-                
-                End If
-                
-            'Write summary results in ws.Cells
-            ws.Cells(2, 17).Value = Format(GreatIncr, "Percent")
-            ws.Cells(3, 17).Value = Format(GreatDecr, "Percent")
-            ws.Cells(4, 17).Value = Format(GreatVol, "Scientific")
-            
-            Next i
-            
-        'Djust column width automatically
-        Worksheets(WorksheetName).Columns("A:Z").AutoFit
-            
+    Next i 
+                     
     Next ws
 
 End Sub 
