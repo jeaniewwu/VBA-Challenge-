@@ -30,7 +30,7 @@ For Each ws In Worksheets
         j = 2
       
             For i = 2 To 705714 
-                If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+                If ws.Cells(i + 1, 1).Value = ws.Cells(i, 1).Value Then
                 
                 'output ticker in column I 
                 ws.Cells(TickCount, 9).Value = ws.Cells(i, 1).Value
