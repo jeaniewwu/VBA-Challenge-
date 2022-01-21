@@ -31,11 +31,9 @@ For Each ws In Worksheets
       
             For i = 2 To 705714 
                 If ws.Cells(i + 1, 1).Value = ws.Cells(i, 1).Value Then
-                
-                'output ticker in column I 
                 ws.Cells(TickCount, 9).Value = ws.Cells(i, 1).Value
                 
-                'Calculate and output Yearly Change in column J
+                Else
                 ws.Cells(TickCount, 10).Value = ws.Cells(i, 6).Value - ws.Cells(j, 3).Value
                 
                     'Conditional formating
@@ -52,10 +50,9 @@ For Each ws In Worksheets
                     End If
                     
                     'Calculate and write percent change in column K
-                    If ws.Cells(j, 3).Value <> 0 Then
-                    PerChange = ((ws.Cells(i, 6).Value - ws.Cells(j, 3).Value) / ws.Cells(j, 3).Value)
+                    If ws.Cells(j, 3).Value = 0 Then
+                    PercentChange = ((ws.Cells(i, 6).Value - ws.Cells(j, 3).Value) / ws.Cells(j, 3).Value)
                     
-                    'Percent formating
                     ws.Cells(TickCount, 11).Value = Format(PerChange, "Percent")
                     
                     Else
@@ -64,7 +61,6 @@ For Each ws In Worksheets
                     
                     End If
                     
-                'Calculate and output total volume in column L
                 ws.Cells(TickCount, 12).Value = WorksheetFunction.Sum(Range(ws.Cells(j, 7), ws.Cells(i, 7)))
                 
                 'Increase TickCount by 1
